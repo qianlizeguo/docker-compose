@@ -1,0 +1,56 @@
+version : '2'
+services :
+    mysql :
+        build : ./mysql # 使用Dockerfile文件
+        ports :
+        - "3306:3306" # 宿主机端口:容器端口
+        environment :
+        - MYSQL_ROOT_PASSWORD=123456 # 设置mysql的root密码
+        volumes:
+        - /home/docker/mysql/data:/var/lib/mysql:rw # mysql数据文件
+        networks:
+        - mysql-net # 加入网络
+        container_name : mysql57 # 设置容器名字
+    redis :
+        build : ./redis
+        ports :
+        - "127.0.0.1:6379:6379" # 如不需外网访问容器里面的服务 设置ip地址为127.0.0.1即可
+        environment :
+        - appendonly=false # 打开redis密码设置
+        #- requirepass=123456 # 设置redis密码
+        networks:
+        - redis-net
+        container_name : redis40
+    php :
+        build : ./php
+        ports :
+        - "127.0.0.1:9000:9000"
+        volumes :
+        - /home/docker/web:/var/www/html:rw # web站点目录
+        - /home/docker/php/php.ini:/usr/local/etc/php/php.ini:ro #php配置文件
+        - /home/docker/php/www.conf:/usr/local/etc/php-fpm.d/www.conf:ro #php-fpm配置文件
+        networks:
+        - php-net
+        - mysql-net
+        - redis-net
+        container_name : php71
+    nginx :
+        build : ./nginx
+        ports :
+        - "8080:80" # 如果宿主机有安装nginx或者apache并且在运行则需要映射到其他端口
+        - "8081:81" # 设置多个站点
+        - "8082:82"
+        - "8083:83"
+        depends_on :
+        - "php"
+        volumes :
+        - /home/docker/web:/var/www/html:rw
+        - /home/docker/nginx/nginx.conf:/etc/nginx/nginx.conf:rw
+        - /home/docker/nginx/conf.d:/etc/nginx/conf.d:rw
+        networks:
+        - php-net
+        container_name : nginx114
+networks: # 创建网络
+    php-net:
+    mysql-net:
+    redis-net:
