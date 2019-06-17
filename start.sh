@@ -38,7 +38,7 @@ fi
 cd /home/docker
 
 if [ ! -f "/home/docker/php/php.ini" ]; then
-    cp php/php.in /home/docker/php/
+    cp php/php.ini /home/docker/php/
 fi
 
 if [ ! -f "/home/docker/php/www.conf" ]; then
@@ -51,7 +51,7 @@ if [ ! -f "/home/docker/nginx/nginx.conf" ]; then
 fi
 
 if [ ! -f "/home/docker/nginx/conf.d/server.conf" ]; then
-    cp /nginx/server.conf /home/docker/nginx/conf.d/
+    cp nginx/server.conf /home/docker/nginx/conf.d/
 fi
 
 echo ">>>>> 开始配置挂载权限 (关闭 selinux）"
