@@ -31,8 +31,11 @@ echo ">>>> 此项目请放在/home/docker下"
 
 if [ ! -d "/home/docker/docker-compose" ]; then
     echo ">>>> 未找到项目"
-    done
+    exit -d;
 fi
+
+
+cd /home/docker
 
 if [ ! -f "/home/docker/php/php.ini" ]; then
     cp php/php.in /home/docker/php/
@@ -42,12 +45,13 @@ if [ ! -f "/home/docker/php/www.conf" ]; then
     cp php/www.conf /home/docker/php/
 fi
 
+
 if [ ! -f "/home/docker/nginx/nginx.conf" ]; then
     cp nginx/nginx.conf /home/docker/nginx/
 fi
 
 if [ ! -f "/home/docker/nginx/conf.d/server.conf" ]; then
-    cp ./ngin/server.conf /home/docker/nginx/conf.d/
+    cp /nginx/server.conf /home/docker/nginx/conf.d/
 fi
 
 echo ">>>>> 开始配置挂载权限 (关闭 selinux）"
