@@ -31,7 +31,7 @@ echo ">>>> 此项目请放在/home/docker下"
 
 if [ ! -d "/home/docker/docker-compose" ]; then
     echo ">>>> 未找到项目"
-    exit -d;
+    exit -1;
 fi
 
 
