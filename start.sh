@@ -27,6 +27,12 @@ if [ ! -d "/home/docker/nginx/conf.d" ]; then
 fi
 
 echo ">>>> 开始配置文件"
+echo ">>>> 此项目请放在/home/docker下"
+
+if [ ! -d "/home/docker/docker-compose" ]; then
+    echo ">>>> 未找到项目"
+    done
+fi
 
 if [ ! -f "/home/docker/php/php.ini" ]; then
     cp php/php.in /home/docker/php/
