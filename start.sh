@@ -35,23 +35,21 @@ if [ ! -d "/home/docker/docker-compose" ]; then
 fi
 
 
-cd /home/docker
-
 if [ ! -f "/home/docker/php/php.ini" ]; then
-    cp php/php.ini /home/docker/php/
+    cp ./php/php.ini /home/docker/php/
 fi
 
 if [ ! -f "/home/docker/php/www.conf" ]; then
-    cp php/www.conf /home/docker/php/
+    cp ./php/www.conf /home/docker/php/
 fi
 
 
 if [ ! -f "/home/docker/nginx/nginx.conf" ]; then
-    cp nginx/nginx.conf /home/docker/nginx/
+    cp ./nginx/nginx.conf /home/docker/nginx/
 fi
 
 if [ ! -f "/home/docker/nginx/conf.d/server.conf" ]; then
-    cp nginx/server.conf /home/docker/nginx/conf.d/
+    cp ./nginx/server.conf /home/docker/nginx/conf.d/
 fi
 
 echo ">>>>> 开始配置挂载权限 (关闭 selinux）"
