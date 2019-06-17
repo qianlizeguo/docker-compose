@@ -29,15 +29,15 @@ fi
 echo ">>>> 开始配置文件"
 
 if [ ! -f "/home/docker/php/php.ini" ]; then
-    cp ./php/php.in /home/docker/php/
+    cp php/php.in /home/docker/php/
 fi
 
 if [ ! -f "/home/docker/php/www.conf" ]; then
-    cp ./php/www.conf /home/docker/php/
+    cp php/www.conf /home/docker/php/
 fi
 
 if [ ! -f "/home/docker/nginx/nginx.conf" ]; then
-    cp ./nginx/nginx.conf /home/docker/nginx/
+    cp nginx/nginx.conf /home/docker/nginx/
 fi
 
 if [ ! -f "/home/docker/nginx/conf.d/server.conf" ]; then
